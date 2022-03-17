@@ -10,24 +10,6 @@ from . import api_calls_args
 
 class HTTP_APIv2:
     """Manage epic-wallet through HTTP API v2"""
-    owner_endpoints = ['accounts', 'create_account_path', 'set_active_account',
-                       'retrieve_outputs', 'retrieve_txs', 'retrieve_summary_info',
-                       'init_send_tx', 'issue_invoice_tx', 'node_height',
-                       'process_invoice_tx']
-
-    owner_endpoints_params = [
-        # [],  # accounts
-        # ['account_label'],  # create_account_path [new_account_name]
-        # ['blacktyg3r'],  # set_active_account [existing_account_name]
-        # [False, True, None],  # retrieve_outputs [include_spent, refresh, tx_id]
-        # [True, None, None],  # retrieve_txs [refresh, tx_id, tx_slate_id]
-        # [True, 10],  # retrieve_summary_info [refresh, minimum_conf]
-        [api_calls_args.tx_args],  # init_send_tx [transaction args]
-        [api_calls_args.invoice_args],  # issue_invoice_tx [invoice_args]
-        # [],  # node_height
-        # [api_calls_args.process_invoice_tx_args],  # process_invoice_tx [process_invoice_tx_args
-        ]
-
     spinner = Halo(text='Downloading transactions', spinner='growVertical')
 
     def __init__(self, settings: dict = None):
@@ -47,6 +29,7 @@ class HTTP_APIv2:
         address = self.settings['wallet']['api_listen_interface']
         port = self.settings['wallet']['owner_api_listen_port']
         url = f"http://{address}:{port}/v2/owner"
+
         # Prepare auth for API POST call
         auth = HTTPBasicAuth(username=username, password=password)
 
@@ -131,12 +114,10 @@ class HTTP_APIv2:
         return self._owner_api_call(method=end_point, params=params)
 
     def init_send_tx(self):
-        return self._owner_api_call(method=self.owner_endpoints[6],
-                                    params=self.owner_endpoints_params[6])
+        pass
 
     def issue_invoice_tx(self):
-        return self._owner_api_call(method=self.owner_endpoints[7],
-                                    params=self.owner_endpoints_params[7])
+        pass
 
     def node_height(self, **params):
         end_point = 'node_height'
