@@ -8,7 +8,7 @@ from src.api_manager import API
 
 
 class Wallet:
-    """ Manage epic-wallet with Python"""
+    """Manage epic-wallet with Python"""
 
     def __init__(self, name: str):
         self.api = API()

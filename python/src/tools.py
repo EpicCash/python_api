@@ -1,11 +1,10 @@
-from log_symbols import LogSymbols
 import subprocess
 import platform
 import psutil
 import os
 
-# Hide CMD windows while using subprocess
 
+# Hide CMD windows while using subprocess
 si = subprocess.STARTUPINFO()
 si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
